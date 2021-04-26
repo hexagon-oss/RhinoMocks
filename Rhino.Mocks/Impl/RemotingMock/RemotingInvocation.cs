@@ -4,9 +4,7 @@ namespace Rhino.Mocks.Impl.RemotingMock
 {
     using System;
     using System.Reflection;
-    using System.Runtime.Remoting.Messaging;
-    using System.Runtime.Remoting.Proxies;
-    using Castle.Core.Interceptor;
+    using Castle.DynamicProxy;
 
     /// <summary>
     /// Implementation of IInvocation based on remoting proxy
@@ -15,34 +13,21 @@ namespace Rhino.Mocks.Impl.RemotingMock
     /// for remoting proxies, or they are never called by Rhino Mocks</remarks>
     internal class RemotingInvocation : IInvocation
     {
-        private readonly IMethodCallMessage _message;
-        private object _returnValue;
-        private readonly RealProxy _realProxy;
-		private object[] _args; 
-
-        public RemotingInvocation(RealProxy realProxy, IMethodCallMessage message)
+        public RemotingInvocation(object realProxy, object message)
         {
-            _message = message;
-            _realProxy = realProxy;
-			this._args = (object[])this._message.Properties["__Args"]; 
+            throw new PlatformNotSupportedException("Remoting is not supported in .NET 5.0");
         }
 
         public object[] Arguments
         {
-            get { return _args; }
+            get { return null; }
         }
 
         public Type[] GenericArguments
         {
             get
             {
-                MethodBase method = _message.MethodBase;
-                if (!method.IsGenericMethod)
-                {
-                    return new Type[0];
-                }
-
-                return method.GetGenericArguments();
+                return null;
             }
         }
 
@@ -53,7 +38,7 @@ namespace Rhino.Mocks.Impl.RemotingMock
 
         public MethodInfo GetConcreteMethod()
         {
-            return (MethodInfo)_message.MethodBase;
+            return null;
         }
 
         public MethodInfo GetConcreteMethodInvocationTarget()
@@ -81,15 +66,20 @@ namespace Rhino.Mocks.Impl.RemotingMock
             throw new InvalidOperationException("Proceed() is not applicable to remoting mocks.");
         }
 
+        public IInvocationProceedInfo CaptureProceedInfo()
+        {
+            throw new NotImplementedException();
+        }
+
         public object Proxy
         {
-            get { return _realProxy.GetTransparentProxy(); }
+            get { return null; }
         }
 
         public object ReturnValue
         {
-            get { return _returnValue; }
-            set { _returnValue = value; }
+            get;
+            set;
         }
 
         public void SetArgumentValue(int index, object value)

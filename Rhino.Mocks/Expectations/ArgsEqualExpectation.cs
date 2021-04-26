@@ -30,10 +30,11 @@
 using System;
 using System.Reflection;
 using System.Text;
-using Castle.Core.Interceptor;
+using Castle.DynamicProxy;
 using Rhino.Mocks.Impl;
 using Rhino.Mocks.Interfaces;
 using Rhino.Mocks.Utilities;
+using Range = Rhino.Mocks.Impl.Range;
 
 namespace Rhino.Mocks.Expectations
 {

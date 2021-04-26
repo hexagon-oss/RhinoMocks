@@ -58,8 +58,10 @@ namespace Rhino.Mocks
 			if (t == null)
 			{
 				// Probably running the .NET Framework
-				if (Marshal.GetExceptionCode() != 0)
-				{
+#pragma warning disable 618
+                if (Marshal.GetExceptionCode() != 0)
+#pragma warning restore 618
+                {
 					return true;
 				}
 			}
