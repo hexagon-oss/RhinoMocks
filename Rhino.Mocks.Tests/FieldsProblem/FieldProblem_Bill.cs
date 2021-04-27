@@ -1,5 +1,5 @@
 ﻿using Xunit;
-using Microsoft.Practices.Unity;
+using Unity;
 
 namespace Rhino.Mocks.Tests.FieldsProblem
 {

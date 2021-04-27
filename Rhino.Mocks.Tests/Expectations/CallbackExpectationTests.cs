@@ -34,6 +34,7 @@ using Rhino.Mocks.Expectations;
 using Rhino.Mocks.Impl;
 using Rhino.Mocks.Interfaces;
 using Rhino.Mocks.Tests.Callbacks;
+using Range = Rhino.Mocks.Impl.Range;
 
 namespace Rhino.Mocks.Tests.Expectations
 {
@@ -64,7 +65,7 @@ namespace Rhino.Mocks.Tests.Expectations
 		[Fact]
 		public void ExceptionWhenArgsDontMatch()
 		{
-			Assert.Throws<InvalidOperationException>("Callback arguments didn't match the method arguments",
+			Assert1.Throws<InvalidOperationException>("Callback arguments didn't match the method arguments",
 			                                         () =>
 			                                         callback =
 			                                         new CallbackExpectation(new FakeInvocation(method),
@@ -84,7 +85,7 @@ namespace Rhino.Mocks.Tests.Expectations
 		[Fact]
 		public void CallbackDoesntReturnBool()
 		{
-			Assert.Throws<InvalidOperationException>("Callbacks must return a boolean", 
+			Assert1.Throws<InvalidOperationException>("Callbacks must return a boolean", 
 				() =>
 				new CallbackExpectation(new FakeInvocation(method), new DelegateDefinations.VoidThreeArgsDelegate(VoidThreeArgsDelegateMethod), new Range(1, 1)));
 		}
@@ -92,7 +93,7 @@ namespace Rhino.Mocks.Tests.Expectations
 		[Fact]
 		public void CallbackWithDifferentSignature_NumArgsDifferent()
 		{
-			Assert.Throws<InvalidOperationException>("Callback arguments didn't match the method arguments",
+			Assert1.Throws<InvalidOperationException>("Callback arguments didn't match the method arguments",
 			                                         () =>
 													 new CallbackExpectation(new FakeInvocation(method), new DelegateDefinations.StringDelegate("".StartsWith), new Range(1, 1)));
 		}
@@ -100,7 +101,7 @@ namespace Rhino.Mocks.Tests.Expectations
 		[Fact]
 		public void CallBackWithDifferentSignature()
 		{
-			Assert.Throws<InvalidOperationException>(
+			Assert1.Throws<InvalidOperationException>(
 				"Callback arguments didn't match the method arguments",
 				() =>
 					callback = new CallbackExpectation(
@@ -109,7 +110,7 @@ namespace Rhino.Mocks.Tests.Expectations
 						new Range(1, 1)));
 		}
 
-		#region Implementation
+        #region Implementation
 
 		private bool VoidNoArgs()
 		{

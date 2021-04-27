@@ -34,6 +34,7 @@ using Rhino.Mocks.Constraints;
 using Rhino.Mocks.Expectations;
 using Rhino.Mocks.Impl;
 using Rhino.Mocks.Interfaces;
+using Range = Rhino.Mocks.Impl.Range;
 
 namespace Rhino.Mocks.Tests.Expectations
 {
@@ -64,7 +65,7 @@ namespace Rhino.Mocks.Tests.Expectations
 		[Fact]
 		public void PassingNullConstraintsThrows()
 		{
-			Assert.Throws<InvalidOperationException>(
+			Assert1.Throws<InvalidOperationException>(
 				"The constraint at index 1 is null! Use Is.Null() to represent null parameters.",
 				() =>
 				expectation = new ConstraintsExpectation(new FakeInvocation(this.method), new AbstractConstraint[]
@@ -103,7 +104,7 @@ namespace Rhino.Mocks.Tests.Expectations
 		[Fact]
 		public void TooFewConstraints()
 		{
-			Assert.Throws<InvalidOperationException>(
+			Assert1.Throws<InvalidOperationException>(
 				"The number of constraints is not the same as the number of the method's parameters!",
 				() => new ConstraintsExpectation(new FakeInvocation(this.method), new AbstractConstraint[]
 				{
@@ -115,7 +116,7 @@ namespace Rhino.Mocks.Tests.Expectations
 		[Fact]
 		public void TooManyConstraints()
 		{
-			Assert.Throws<InvalidOperationException>(
+			Assert1.Throws<InvalidOperationException>(
 				"The number of constraints is not the same as the number of the method's parameters!",
 				() =>
 				new ConstraintsExpectation(new FakeInvocation(this.method), new AbstractConstraint[]
@@ -158,7 +159,7 @@ namespace Rhino.Mocks.Tests.Expectations
 		[Fact]
 		public void TooFewArgs()
 		{
-			Assert.Throws<InvalidOperationException>(
+			Assert1.Throws<InvalidOperationException>(
 				"Number of argument doesn't match the number of parameters!",
 				() => this.expectation.IsExpected(new object[] {32, "Ayende"}));
 		}

@@ -38,7 +38,7 @@ namespace Rhino.Mocks.Tests
     {
         public interface IMockTest
         {
-            Scripting.FileSystemObject GetFileSystemObject();
+            object GetFileSystemObject();
         }
         
         [Fact]
@@ -46,7 +46,7 @@ namespace Rhino.Mocks.Tests
         {
             MockRepository mocks = new MockRepository();
             Type fsoType = Type.GetTypeFromProgID("Scripting.FileSystemObject");
-            Scripting.FileSystemObject fso = (Scripting.FileSystemObject)Activator.CreateInstance(fsoType);
+            object fso = Activator.CreateInstance(fsoType);
             IMockTest test = mocks.StrictMock(typeof(IMockTest)) as IMockTest;
             Expect.Call(test.GetFileSystemObject()).Return(fso);
             mocks.ReplayAll();
