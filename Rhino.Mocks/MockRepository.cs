@@ -208,11 +208,12 @@ namespace Rhino.Mocks
         /// </summary>
         public MockRepository()
         {
-            proxyGenerationOptions = new ProxyGenerationOptions
+            var ctor = typeof(__ProtectAttribute).GetConstructor(BindingFlags.Instance | BindingFlags.Public, null, new Type[0], null);
+            proxyGenerationOptions = new ProxyGenerationOptions()
             {
                 AdditionalAttributes =
                 {
-                    new CustomAttributeInfo(typeof(__ProtectAttribute).GetConstructor(BindingFlags.Instance | BindingFlags.Public, null, new Type[0], null), null)
+                    new CustomAttributeInfo(ctor, new object[0])
                 }
             };
             recorders = new Stack();
@@ -1213,9 +1214,9 @@ namespace Rhino.Mocks
         /// <summary>
         /// Generate a mock object with dynamic replay semantics and remoting without needing the mock repository
         /// </summary>
-        public static T GenerateDynamicMockWithRemoting<T>(params object[] argumentsForConstructor)
+        public static T GenerateDynamicMockWithRemoting<T>(params object[] argumentsForConstructor) where T : class
         {
-            return CreateMockInReplay(r => r.DynamicMockWithRemoting<T>(argumentsForConstructor));
+            return CreateMockInReplay(r => r.DynamicMock<T>(argumentsForConstructor));
         }
 
         /// <summary>
@@ -1223,7 +1224,7 @@ namespace Rhino.Mocks
         /// </summary>
         public static T GenerateStrictMockWithRemoting<T>(params object[] argumentsForConstructor) where T : class
         {
-            return CreateMockInReplay(r => r.StrictMockWithRemoting<T>(argumentsForConstructor));
+            return CreateMockInReplay(r => r.StrictMock<T>(argumentsForConstructor));
         }
 
         /// <summary>Helper method to create a mock object without a repository instance and put the object back into replay mode.</summary>

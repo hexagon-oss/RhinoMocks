@@ -99,6 +99,10 @@ namespace Rhino.Mocks.Constraints
             }
             else
             {
+                if (_checkedObjects.Contains(expected))
+                {
+                    return true;
+                }
                 //if both objects are comparable Equals can be used to determine equality. (value types implement IComparable too when boxed)
                 if (expected is IComparable) 
                 {
@@ -140,6 +144,12 @@ namespace Rhino.Mocks.Constraints
         /// <returns>True when both objects have the same values, else False.</returns>
         protected virtual bool CheckProperties(object expected, object actual)
         {
+            if (expected is Type t1 && actual is Type t2)
+            {
+                // if we're comparing type instances, we can directly call equals on them. Comparing their properties might end up in an infinite recursion
+                return t1.Equals(t2);
+            }
+
             Type tExpected = expected.GetType();
             Type tActual = actual.GetType();
 
