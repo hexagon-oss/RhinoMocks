@@ -47,7 +47,7 @@ namespace Rhino.Mocks.Tests.Impl
 		public void IsNotNullWhenNullThrows()
 		{
 			Assert.Throws<ArgumentNullException>(
-				"Value cannot be null.\r\nParameter name: test",
+				"test",
 				() => Validate.IsNotNull(null, "test"));
 		}
 
@@ -57,7 +57,7 @@ namespace Rhino.Mocks.Tests.Impl
             string sample = null;
 
             Assert.Throws<ArgumentNullException>(
-                "Value cannot be null.\r\nParameter name:sample",
+                "sample",
                 () => Validate.IsNotNull(() => sample));
         }
 

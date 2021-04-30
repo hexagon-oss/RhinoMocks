@@ -79,7 +79,7 @@ namespace Rhino.Mocks.Tests.Expectations
 		[Fact]
 		public void NullConstraints()
 		{
-			Assert.Throws<ArgumentNullException>("Value cannot be null.\r\nParameter name: constraints",
+			Assert.Throws<ArgumentNullException>("constraints",
 			                                     () =>
 			                                     new ConstraintsExpectation(new FakeInvocation(this.method), null,
 			                                                                new Range(1, 1)));
@@ -89,7 +89,7 @@ namespace Rhino.Mocks.Tests.Expectations
 		public void NullConstraintsFromPrevExpectation()
 		{
 			Assert.Throws<ArgumentNullException>(
-				"Value cannot be null.\r\nParameter name: constraints",
+				"constraints",
 				() => new ConstraintsExpectation(expectation, null));
 		}
 
@@ -97,7 +97,7 @@ namespace Rhino.Mocks.Tests.Expectations
 		[Fact]
 		public void NullEvaluation()
 		{
-			Assert.Throws<ArgumentNullException>("Value cannot be null.\r\nParameter name: args",
+			Assert.Throws<ArgumentNullException>("args",
 			                                     () => expectation.IsExpected(null));
 		}
 

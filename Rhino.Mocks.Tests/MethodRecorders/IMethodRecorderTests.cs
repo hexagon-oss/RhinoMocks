@@ -132,14 +132,14 @@ namespace Rhino.Mocks.Tests.MethodRecorders
 		public void RecordProxyNullThrows()
 		{
 			Assert.Throws<ArgumentNullException>(
-				"Value cannot be null.\r\nParameter name: proxy",
+				"proxy",
 				() => this.recorder.Record(null, voidNoArgs, expectationOne));
 		}
 
 		[Fact]
 		public void RecordMethodNullThrows()
 		{
-			Assert.Throws<ArgumentNullException>("Value cannot be null.\r\nParameter name: method",
+			Assert.Throws<ArgumentNullException>("method",
 			                                     () => recorder.Record(demo, null, expectationOne));
 		}
 
@@ -147,7 +147,7 @@ namespace Rhino.Mocks.Tests.MethodRecorders
 		public void RecordArgsNullThrows()
 		{
 			Assert.Throws<ArgumentNullException>(
-				"Value cannot be null.\r\nParameter name: expectation",
+				"expectation",
 				() => recorder.Record(demo, voidNoArgs, null));
 		}
 
@@ -156,7 +156,7 @@ namespace Rhino.Mocks.Tests.MethodRecorders
 		{
 			recorder.Record(demo, voidNoArgs, expectationOne);
 			Assert.Throws<ArgumentNullException>(
-				"Value cannot be null.\r\nParameter name: proxy",
+				"proxy",
 				() => recorder.GetRecordedExpectation(new FakeInvocation(voidNoArgs), null, voidNoArgs, new object[0]));
 		}
 
@@ -165,7 +165,7 @@ namespace Rhino.Mocks.Tests.MethodRecorders
 		{
 			recorder.Record(demo, voidNoArgs, expectationOne);
 			Assert.Throws<ArgumentNullException>(
-				"Value cannot be null.\r\nParameter name: method",
+				"method",
 				() => recorder.GetRecordedExpectation(new FakeInvocation(null), demo, null, new object[0]));
 		}
 
@@ -174,7 +174,7 @@ namespace Rhino.Mocks.Tests.MethodRecorders
 		{
 			recorder.Record(demo, voidNoArgs, expectationOne);
 			Assert.Throws<ArgumentNullException>(
-				"Value cannot be null.\r\nParameter name: args",
+				"args",
 				() => recorder.GetRecordedExpectation(new FakeInvocation(voidNoArgs), demo, voidNoArgs, null));
 		}
 
@@ -182,7 +182,7 @@ namespace Rhino.Mocks.Tests.MethodRecorders
 		public void GetAllExpectationsMethodNullThrows()
 		{
 			Assert.Throws<ArgumentNullException>(
-				"Value cannot be null.\r\nParameter name: method",
+				"method",
 				() => recorder.GetAllExpectationsForProxyAndMethod(demo, null));
 		}
 
@@ -190,7 +190,7 @@ namespace Rhino.Mocks.Tests.MethodRecorders
 		public void GetAllExpectationsProxyNullThrows()
 		{
 			Assert.Throws<ArgumentNullException>(
-				"Value cannot be null.\r\nParameter name: proxy",
+				"proxy",
 				() => recorder.GetAllExpectationsForProxyAndMethod(null, voidNoArgs));
 
 		}

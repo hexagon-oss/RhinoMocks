@@ -99,7 +99,7 @@ namespace Rhino.Mocks.Tests
 		public void ExpectWhenNoCallMade()
 		{
 			Assert1.Throws<InvalidOperationException>(
-				"The object is not a mock object that belong to this repository.",
+                "Invalid call, the last call has been used or no call has been made (make sure that you are calling a virtual (C#) / Overridable (VB) method).",
 				() => Expect.Call<object>(null));
 			mocks.Replay(demo); //for the tear down
 		}

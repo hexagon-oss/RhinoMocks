@@ -561,7 +561,7 @@ namespace Rhino.Mocks.Tests
 			demo.Bar("yoho");
 
 			Assert1.Throws<ExpectationViolationException>(
-				"IFoo54.Bar(a => (a.StartsWith(\"b\") && a.Contains(\"ba\"))); Expected #1, Actual #0."
+				"IFoo54.Bar(a => (a.StartsWith(\"b\") AndAlso a.Contains(\"ba\"))); Expected #1, Actual #0."
 				, () => demo.AssertWasCalled(x => x.Bar(Arg<string>.Matches((string a) => a.StartsWith("b") && a.Contains("ba")))));
 		}
 #endif

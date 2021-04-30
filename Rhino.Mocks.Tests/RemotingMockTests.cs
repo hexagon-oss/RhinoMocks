@@ -34,54 +34,53 @@ namespace Rhino.Mocks.Tests
     
     public class StrictMockTests
     {
-        public class TestClass : MarshalByRefObject
+        public class TestClass
         {
-            public TestClass(string unused)
+            public TestClass()
             {
-                throw new InvalidCastException("Real method should never be called"); 
             }
 
-            public void Method() 
+            public virtual void Method() 
             { 
                 throw new InvalidCastException("Real method should never be called"); 
             }
 
-            public int MethodReturningInt()
+            public virtual int MethodReturningInt()
             {
                 throw new InvalidCastException("Real method should never be called");
             }
 
-            public string MethodReturningString()
+            public virtual string MethodReturningString()
             {
                 throw new InvalidCastException("Real method should never be called");
             }
 
-            public string MethodGettingParameters(int intParam, string stringParam)
+            public virtual string MethodGettingParameters(int intParam, string stringParam)
             {
                 throw new InvalidCastException("Real method should never be called");
             }
 
-            public void MethodAcceptingTestClass(TestClass other)
+            public virtual void MethodAcceptingTestClass(TestClass other)
             {
                 throw new InvalidCastException("Real method should never be called");
             }
 
-            public int GenericMethod<T>(string parameter)
+            public virtual int GenericMethod<T>(string parameter)
             {
                 throw new InvalidCastException("Real method should never be called");
             }
 
-            public T GenericMethodReturningGenericType<T>(string parameter)
+            public virtual T GenericMethodReturningGenericType<T>(string parameter)
             {
                 throw new InvalidCastException("Real method should never be called");
             }
 
-            public T GenericMethodWithGenericParam<T>( T parameter )
+            public virtual T GenericMethodWithGenericParam<T>( T parameter )
             {
                 throw new InvalidCastException("Real method should never be called");
             }
 
-            public string StringProperty
+            public virtual string StringProperty
             {
                 get
                 {
@@ -96,12 +95,12 @@ namespace Rhino.Mocks.Tests
 
         public class GenericTestClass<T> : MarshalByRefObject
         {
-            public int Method(T parameter)
+            public virtual int Method(T parameter)
             {
                 throw new InvalidCastException("Real method should never be called");
             }
 
-            public U GenericMethod<U>(T parameter)
+            public virtual U GenericMethod<U>(T parameter)
             {
                 throw new InvalidCastException("Real method should never be called");
             }
@@ -278,25 +277,26 @@ TestClass.GenericMethod<System.String>(""foo""); Expected #1, Actual #0.",
             mocks.VerifyAll();
         }
 
-		[Fact]
-		public void CanMockAppDomain()
-		{
-			MockRepository mocks = new MockRepository();
-			AppDomain appDomain = mocks.StrictMock<AppDomain>();
-			Expect.Call(appDomain.BaseDirectory).Return("/home/user/ayende");
-			mocks.ReplayAll();
-			Assert.Equal(appDomain.BaseDirectory, "/home/user/ayende" );
-			mocks.VerifyAll();
-		}
+        // AppDomain is mostly empty in NET5.0, so we don't need this any more
+		////[Fact]
+		////public void CanMockAppDomain()
+		////{
+		////	MockRepository mocks = new MockRepository();
+		////	AppDomain appDomain = mocks.StrictMock<AppDomain>();
+		////	Expect.Call(appDomain.BaseDirectory).Return("/home/user/ayende");
+		////	mocks.ReplayAll();
+		////	Assert.Equal(appDomain.BaseDirectory, "/home/user/ayende" );
+		////	mocks.VerifyAll();
+		////}
 
 		[Fact]
     	public void NotCallingExpectedMethodWillCauseVerificationError()
     	{
 			MockRepository mocks = new MockRepository();
-			AppDomain appDomain = mocks.StrictMock<AppDomain>();
-			Expect.Call(appDomain.BaseDirectory).Return("/home/user/ayende");
+			var test = mocks.StrictMock<TestClass>();
+			Expect.Call(test.StringProperty).Return("/home/user/ayende");
 			mocks.ReplayAll();
-			Assert1.Throws<ExpectationViolationException>(@"AppDomain.get_BaseDirectory(); Expected #1, Actual #0.",
+			Assert1.Throws<ExpectationViolationException>(@"TestClass.get_StringProperty(); Expected #1, Actual #0.",
 			                                             () => mocks.VerifyAll());
     	}
 

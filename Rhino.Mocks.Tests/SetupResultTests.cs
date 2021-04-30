@@ -69,8 +69,7 @@ namespace Rhino.Mocks.Tests
 		[Fact]
 		public void SetupResultForNoCall()
 		{
-			Assert1.Throws<InvalidOperationException>(
-				"Invalid call, the last call has been used or no call has been made (make sure that you are calling a virtual (C#) / Overridable (VB) method).",
+			Assert.Throws<InvalidOperationException>(
 				() => SetupResult.For<object>(null));
 		}
 

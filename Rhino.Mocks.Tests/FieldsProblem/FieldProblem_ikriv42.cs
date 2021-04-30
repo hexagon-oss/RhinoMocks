@@ -8,7 +8,7 @@ namespace Rhino.Mocks.Tests.FieldsProblem
     {
         public class D : MarshalByRefObject
         {
-            public D(IConvertible dep1, IDisposable dep2, ICloneable dep3)
+            public D()
             {
             }
         }

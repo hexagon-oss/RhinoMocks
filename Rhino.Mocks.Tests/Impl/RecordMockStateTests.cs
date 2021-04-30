@@ -122,7 +122,7 @@ namespace Rhino.Mocks.Tests.Impl
 		public void PassingNullProxyCauseException()
 		{
 			Assert.Throws<ArgumentNullException>(
-				"Value cannot be null.\r\nParameter name: proxy",
+				"proxy",
 				() => new RecordMockState(null, null));
 		}
 
@@ -130,7 +130,7 @@ namespace Rhino.Mocks.Tests.Impl
 		public void PassingNullmocksCauseException()
 		{
 			Assert.Throws<ArgumentNullException>(
-				"Value cannot be null.\r\nParameter name: repository",
+				"repository",
 				() => new RecordMockState(new ProxyInstance(null), null));
 		}
 
