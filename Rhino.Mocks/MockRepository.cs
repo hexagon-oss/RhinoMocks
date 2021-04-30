@@ -32,6 +32,7 @@ using System;
 using System.Collections;
 using System.Collections.Generic;
 using System.Collections.Specialized;
+using System.Linq;
 using System.Reflection;
 using System.Text;
 using Castle.DynamicProxy;
@@ -529,12 +530,14 @@ namespace Rhino.Mocks
         /// <param name="factory">Creates the mock state for this proxy</param>
         private object RemotingMock(Type type, CreateMockState factory)
         {
-            ProxyInstance rhinoProxy = new ProxyInstance(this, type);
+            object mock = CreateMockObject(type, factory, new Type[0], new object[0]);
+            return mock;
+            /* ProxyInstance rhinoProxy = new ProxyInstance(this, type);
             RhinoInterceptor interceptor = new RhinoInterceptor(this, rhinoProxy,invocationVisitorsFactory.CreateStandardInvocationVisitors(rhinoProxy, this));
             object transparentProxy = new RemotingMockGenerator().CreateRemotingMock(type, interceptor, rhinoProxy);
             IMockState value = factory(rhinoProxy);
             proxies.Add(transparentProxy, value);
-            return transparentProxy;
+            return transparentProxy; */
         }
 
         /// <summary>
@@ -794,7 +797,10 @@ namespace Rhino.Mocks
                 delegateTargetInterface,
                 types, proxyGenerationOptions, interceptor);
 
-            proxy = Delegate.CreateDelegate(type, target, delegateTargetInterface.Name+ ".Invoke");
+            // Only the "Invoke" method exists on this interface
+            var method = delegateTargetInterface.GetMethods(BindingFlags.Instance | BindingFlags.Public).Single();
+
+            proxy = Delegate.CreateDelegate(type, target, method);
             delegateProxies.Add(target, proxy);
 
             IMockState value = mockStateFactory(GetMockedObject(proxy));
