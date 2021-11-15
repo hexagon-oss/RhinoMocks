@@ -95,7 +95,6 @@
   
   
   <ItemGroup>
-    <ProjectReference Include="..\Rhino.Mocks.CPP.Interfaces\Rhino.Mocks.CPP.Interfaces\Rhino.Mocks.CPP.Interfaces.vcxproj" />
     <ProjectReference Include="..\Rhino.Mocks.Tests.Model\Rhino.Mocks.Tests.Model.csproj" />
     <ProjectReference Include="..\Rhino.Mocks\Rhino.Mocks.csproj" />
   </ItemGroup>
