@@ -111,6 +111,10 @@ namespace Rhino.Mocks.Expectations
 		{
 			if (args.Length <= i)
 				return "missing parameter";
+            if (args.Rank > 1)
+            {
+                return "[multidimensional array]";
+            }
 			object arg = args.GetValue(i);
 			if (arg is Array)
 			{
