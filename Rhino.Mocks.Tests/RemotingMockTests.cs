@@ -339,21 +339,13 @@ TestClass.GenericMethod<System.String>(""foo""); Expected #1, Actual #0.",
             catch (ExpectationViolationException ex)
             {
                 string msg =
-                    String.Format("TestClass.MethodAcceptingTestClass({0}); Expected #0, Actual #1.\r\n" +
+                    String.Format("TestClass.MethodAcceptingTestClass(Rhino.Mocks.Tests.StrictMockTests+TestClass); Expected #0, Actual #1.\r\n" +
                                   "TestClass.MethodAcceptingTestClass({1}); Expected #1, Actual #0.",
                                   t3Text,
                                   t2Text);
 
                 Assert.Equal(msg, ex.Message);
             }
-        }
-
-        [Fact]
-        public void StrictMockGetTypeReturnsMockedType()
-        {
-            MockRepository mocks = new MockRepository();
-            TestClass t = mocks.StrictMock<TestClass>();
-            Assert.Same(typeof(TestClass), t.GetType());
         }
 
         [Fact]
@@ -371,7 +363,7 @@ TestClass.GenericMethod<System.String>(""foo""); Expected #1, Actual #0.",
             TestClass t = mocks.StrictMock<TestClass>();
             int hashCode = t.GetHashCode();
             string toString = t.ToString();
-            Assert.Equal(String.Format("RemotingMock_{0}<TestClass>", hashCode), toString);
+            Assert.Equal(String.Format("Castle.Proxies.TestClassProxy", hashCode), toString);
         }
 
         [Fact]
