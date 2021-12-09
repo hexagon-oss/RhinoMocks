@@ -127,8 +127,10 @@ namespace Rhino.Mocks
 			var isInReplayMode = mocks.IsInReplayMode(mock);
 			mocks.BackToRecord(mock, BackToRecordOptions.None);
 			action(mock);
-			IMethodOptions<R> options = LastCall.GetOptions<R>();
-			options.TentativeReturn();
+#pragma warning disable CS0618 // Typ oder Element ist veraltet
+            IMethodOptions<R> options = LastCall.GetOptions<R>();
+#pragma warning restore CS0618 // Typ oder Element ist veraltet
+            options.TentativeReturn();
 			if (isInReplayMode)
 				mocks.ReplayCore(mock, false);
 			return options;

@@ -44,6 +44,7 @@ namespace Rhino.Mocks
 	/// Allows to set expectation on methods that has return values.
 	/// For methods with void return value, you need to use LastCall
 	/// </summary>
+	[Obsolete("Incompatible with .NET 5.0")]
 	public static class Expect
 	{
 		///<summary>

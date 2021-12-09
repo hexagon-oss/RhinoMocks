@@ -35,6 +35,7 @@ namespace Rhino.Mocks
     /// For methods with void return value, you need to use LastCall or
     /// DoNotExpect.Call() with a delegate.
     /// </summary>
+    [Obsolete("Incompatible with .NET 5.0")]
     public static class DoNotExpect
     {
         /// <summary>

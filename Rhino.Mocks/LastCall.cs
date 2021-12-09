@@ -45,6 +45,7 @@ namespace Rhino.Mocks
 	/// a specified object.
 	/// If the method has a return value, it's recommended to use Expect
 	/// </summary>
+    [Obsolete("Incompatible with .NET 5.0")]
 	public static class LastCall
 	{
 		/*

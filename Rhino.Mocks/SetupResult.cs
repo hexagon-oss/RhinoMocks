@@ -27,6 +27,7 @@
 #endregion
 
 
+using System;
 using Rhino.Mocks.Impl;
 using Rhino.Mocks.Interfaces;
 
@@ -35,6 +36,7 @@ namespace Rhino.Mocks
 	/// <summary>
 	/// Setup method calls to repeat any number of times.
 	/// </summary>
+    [Obsolete("Incompatible with .NET 5.0")]
 	public static class SetupResult
 	{
 		/*
