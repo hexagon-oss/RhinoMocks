@@ -2,12 +2,12 @@
  <PropertyGroup>
     <TargetFrameworks>net4.8;net5.0</TargetFrameworks>
     <ProjectType>Local</ProjectType>
-    <ProductVersion>5.0.1.1</ProductVersion>
+    <ProductVersion>5.0.2.1</ProductVersion>
     <SchemaVersion>2.0</SchemaVersion>
     <ProjectGuid>{1E8FECC7-9E9B-4275-A938-D956F5E5D4F8}</ProjectGuid>
     <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
     <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
-    <AssemblyName>Rhino.Mocks</AssemblyName>
+    <AssemblyName>RhinoMocks5</AssemblyName>
     <DefaultClientScript>JScript</DefaultClientScript>
     <DefaultHTMLPageLayout>Grid</DefaultHTMLPageLayout>
     <DefaultTargetSchema>IE50</DefaultTargetSchema>
@@ -28,12 +28,12 @@
     <UpdateRequired>false</UpdateRequired>
     <MapFileExtensions>true</MapFileExtensions>
     <ApplicationRevision>0</ApplicationRevision>
-    <ApplicationVersion>5.0.1-alpha1</ApplicationVersion>
+    <ApplicationVersion>5.0.2-alpha1</ApplicationVersion>
     <IsWebBootstrapper>false</IsWebBootstrapper>
     <UseApplicationTrust>false</UseApplicationTrust>
     <BootstrapperEnabled>true</BootstrapperEnabled>
     <PackageId>RhinoMocks5</PackageId>
-    <Version>5.0.1-alpha1</Version>
+    <Version>5.0.2-alpha1</Version>
     <Authors>ayende</Authors>
     <Description>Rhino Mocks is using Castle Dynamic Proxy (http://www.castleproject.org/dynamicproxy/index.html) to handle proxying the types it needs to mock.
 The Dynamic Proxy project has been invaluable resource and made creating Rhino Mocks possible. - This is a partial port to run existing tests under .NET 5.0</Description>
@@ -60,7 +60,7 @@ The Dynamic Proxy project has been invaluable resource and made creating Rhino M
     <UseVSHostingProcess>true</UseVSHostingProcess>
     <NoWarn>1607</NoWarn>
     <CodeAnalysisRuleSet>AllRules.ruleset</CodeAnalysisRuleSet>
-    <DocumentationFile>bin\debug\net5.0\Rhino.Mocks.xml</DocumentationFile>
+    <DocumentationFile>bin\debug\net5.0\RhinoMocks5.xml</DocumentationFile>
   </PropertyGroup>
   <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
     <OutputPath>bin\Release\</OutputPath>
